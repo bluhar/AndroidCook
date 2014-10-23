@@ -1,7 +1,12 @@
 package com.example.geoquiz;
 
+import java.lang.annotation.Target;
+import android.annotation.TargetApi;
+import android.app.ActionBar;
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,21 +16,22 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.geoquiz.pojo.TrueFalse;
 
-public class QuizActivity extends ActionBarActivity {
+public class QuizActivity extends Activity {
 	
 	private static final String TAG = QuizActivity.class.getSimpleName();
 	private static final String KEY_INDEX = "index";
 
 	private Button mTrueButton;
 	private Button mFalseButton;
+	private Button mCheatButton;
 	private ImageButton mNextButton;
 	private ImageButton mPrevButton;
 	private TextView mQuestionTextView;
 
 	private int mCurrenctIndex;
+	private boolean mIsCheater;
 	
 	
 
@@ -38,6 +44,7 @@ public class QuizActivity extends ActionBarActivity {
 			new TrueFalse(R.string.question_program, true) 
 	};
 
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -102,8 +109,35 @@ public class QuizActivity extends ActionBarActivity {
 				updateQuestion();
 			}
 		});
+		
+		this.mCheatButton = (Button) findViewById(R.id.cheat_button);
+		this.mCheatButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				//start cheat activity
+				//同一应用里的两个Activity间通信，要借助于ActivityManager。
+				//Intent分为显示和隐示，下面通过传入Context和class的方式是显示
+				//一个应用的activity启动另一个应用的activity，可通过创建隐示intent来处理。
+				Intent intent = new Intent(QuizActivity.this, CheatActivity.class); 
+				boolean answerIsTrue = mQuestions[mCurrenctIndex].isAnswer();
+				intent.putExtra(CheatActivity.EXTRA_ANSWER_IS_TRUE, answerIsTrue);
+				//startActivity(intent);
+				startActivityForResult(intent, 0);
+			}
+		});
+		
 
 		updateQuestion();
+		
+		//然而，即使加上SDK版本检查代码，Lint依然会提示错误，必须加上@TargetApi(Build.VERSION_CODES.HONEYCOMB)在onCreate()才可以。
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+			// Call requires API level 11 (current min is 8):
+			// android.app.Activity#getActionBar
+			ActionBar actionBar = getActionBar();
+			actionBar.setSubtitle("test action bar");
+		}
+		
 	}
 	
 	/**
@@ -117,6 +151,21 @@ public class QuizActivity extends ActionBarActivity {
 		outState.putInt(KEY_INDEX, mCurrenctIndex);
 	}
 	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onActivityResult(int, int, android.content.Intent)
+	 * 当从子activity返回到当前activity时，ActivityManager会调用此方法
+	 */
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (data == null) {
+			return;
+		}
+		mIsCheater = data.getBooleanExtra(CheatActivity.EXTRA_ANSWER_SHOWN, false);
+	}
+
+
+
 	@Override
 	protected void onStart() {
 		Log.d(TAG, "onStart() called"); 
@@ -173,11 +222,19 @@ public class QuizActivity extends ActionBarActivity {
 	
 	private void checkAnswer(boolean userPressedValue) {
 		boolean answer = this.mQuestions[mCurrenctIndex].isAnswer();
-		if (userPressedValue == answer){
-			Toast.makeText(this, R.string.correct_toast, Toast.LENGTH_SHORT).show();
+		int messageResId = 0;
+		if(mIsCheater) {
+			messageResId = R.string.judgment_toast;
 		}
-		else{
-			Toast.makeText(this, R.string.incorrect_toast, Toast.LENGTH_SHORT).show();
+		else {
+			if (userPressedValue == answer){
+				messageResId = R.string.correct_toast;
+			}
+			else{
+				messageResId = R.string.incorrect_toast;
+			}
+			
 		}
+		Toast.makeText(this, messageResId, Toast.LENGTH_SHORT).show();
 	}
 }

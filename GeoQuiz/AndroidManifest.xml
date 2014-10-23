@@ -5,14 +5,16 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
-        android:targetSdkVersion="21" />
+        android:minSdkVersion="8"  
+        android:targetSdkVersion="19" />
+    <!-- Min SDK Version，指定使用的API必须是API 8中有的，如果使用了API 8中没有的API，当APP运行在API 8级的设备上时会崩溃 -->
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <!-- 应用的所有activity都必须在manifest配置文件中声明 -->
         <activity
             android:name=".QuizActivity"
             android:label="@string/app_name" >
@@ -22,6 +24,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity 
+            android:name=".CheatActivity"
+            ></activity>
     </application>
 
 </manifest>
