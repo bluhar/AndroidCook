@@ -1,0 +1,120 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  Internal Error (javaClasses.cpp:136), pid=6920, tid=2396
+#  fatal error: Invalid layout of preloaded class
+#
+# JRE version:  (7.0_67-b01) (build )
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (24.65-b04 mixed mode windows-amd64 compressed oops)
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.sun.com/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x000000000299f000):  JavaThread "Unknown thread" [_thread_in_vm, id=2396, stack(0x0000000002cd0000,0x0000000002dd0000)]
+
+Stack: [0x0000000002cd0000,0x0000000002dd0000]
+[error occurred during error reporting (printing stack bounds), id 0xc0000005]
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x000000000299f000 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=2396, stack(0x0000000002cd0000,0x0000000002dd0000)]
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (10 events):
+Event: 0.557 loading class 0x000000000287cfc0 done
+Event: 0.557 loading class 0x000000000287c9e0 done
+Event: 0.557 loading class 0x000000000287c9c0
+Event: 0.557 loading class 0x0000000002884b10
+Event: 0.558 loading class 0x0000000002884b10 done
+Event: 0.558 loading class 0x0000000002884b40
+Event: 0.558 loading class 0x0000000002884b40 done
+Event: 0.558 loading class 0x0000000002884b70
+Event: 0.558 loading class 0x0000000002884b70 done
+Event: 0.558 loading class 0x000000000287c9c0 done
+
+
+Dynamic libraries:
+0x000000013fb00000 - 0x000000013fb33000 	D:\Program Files\Java\jdk1.7.0_67\bin\javaw.exe
+0x0000000076e80000 - 0x0000000077029000 	C:\windows\SYSTEM32\ntdll.dll
+0x00000000767b0000 - 0x00000000768cf000 	C:\windows\system32\kernel32.dll
+0x000007fefd170000 - 0x000007fefd1dc000 	C:\windows\system32\KERNELBASE.dll
+0x000007fefda50000 - 0x000007fefdb2b000 	C:\windows\system32\ADVAPI32.dll
+0x000007fefec50000 - 0x000007fefecef000 	C:\windows\system32\msvcrt.dll
+0x000007feff100000 - 0x000007feff11f000 	C:\windows\SYSTEM32\sechost.dll
+0x000007fefdce0000 - 0x000007fefde0d000 	C:\windows\system32\RPCRT4.dll
+0x0000000076ae0000 - 0x0000000076bda000 	C:\windows\system32\USER32.dll
+0x000007fefd520000 - 0x000007fefd587000 	C:\windows\system32\GDI32.dll
+0x000007feff130000 - 0x000007feff13e000 	C:\windows\system32\LPK.dll
+0x000007fefd590000 - 0x000007fefd659000 	C:\windows\system32\USP10.dll
+0x000007fefb810000 - 0x000007fefba04000 	C:\windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.7601.17514_none_fa396087175ac9ac\COMCTL32.dll
+0x000007fefeed0000 - 0x000007fefef41000 	C:\windows\system32\SHLWAPI.dll
+0x000007feff050000 - 0x000007feff07e000 	C:\windows\system32\IMM32.DLL
+0x000007fefdb30000 - 0x000007fefdc39000 	C:\windows\system32\MSCTF.dll
+0x000007fefd070000 - 0x000007fefd0ac000 	C:\windows\system32\nvinitx.dll
+0x000000000f000000 - 0x000000000f006000 	C:\Program Files\NVIDIA Corporation\CoProcManager\_etoured.dll
+0x000007fefa3b0000 - 0x000007fefa3f4000 	C:\Program Files\NVIDIA Corporation\CoProcManager\nvd3d9wrapx.dll
+0x000007fefd870000 - 0x000007fefda47000 	C:\windows\system32\SETUPAPI.dll
+0x000007fefd4e0000 - 0x000007fefd516000 	C:\windows\system32\CFGMGR32.dll
+0x000007fefecf0000 - 0x000007fefedc7000 	C:\windows\system32\OLEAUT32.dll
+0x000007fefd660000 - 0x000007fefd863000 	C:\windows\system32\ole32.dll
+0x000007fefd490000 - 0x000007fefd4aa000 	C:\windows\system32\DEVOBJ.dll
+0x000007fefa360000 - 0x000007fefa3a2000 	C:\Program Files\NVIDIA Corporation\CoProcManager\nvdxgiwrapx.dll
+0x000000006a3e0000 - 0x000000006a4b2000 	D:\Program Files\Java\jdk1.7.0_67\jre\bin\msvcr100.dll
+0x0000000069c00000 - 0x000000006a3d2000 	D:\Program Files\Java\jdk1.7.0_67\jre\bin\server\jvm.dll
+0x000007fef9a40000 - 0x000007fef9a49000 	C:\windows\system32\WSOCK32.dll
+0x000007feff140000 - 0x000007feff18d000 	C:\windows\system32\WS2_32.dll
+0x000007feff120000 - 0x000007feff128000 	C:\windows\system32\NSI.dll
+0x000007fefd220000 - 0x000007fefd25b000 	C:\windows\system32\WINMM.dll
+0x0000000077040000 - 0x0000000077047000 	C:\windows\system32\PSAPI.DLL
+0x0000000071900000 - 0x000000007190f000 	D:\Program Files\Java\jdk1.7.0_67\jre\bin\verify.dll
+0x0000000069bd0000 - 0x0000000069bf8000 	D:\Program Files\Java\jdk1.7.0_67\jre\bin\java.dll
+0x000000006e660000 - 0x000000006e675000 	D:\Program Files\Java\jdk1.7.0_67\jre\bin\zip.dll
+
+VM Arguments:
+jvm_args: -Dfile.encoding=GBK -Xbootclasspath:D:\Android\android-sdk\platforms\android-19\android.jar 
+java_command: com.example.hellomedia.test
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=C:\Program Files\Java\jdk1.6.0_25
+PATH=C:/Program Files/Java/jdk1.6.0_25/bin/../jre/bin/server;C:/Program Files/Java/jdk1.6.0_25/bin/../jre/bin;C:/Program Files/Java/jdk1.6.0_25/bin/../jre/lib/amd64;C:\Program Files\Java\jdk1.6.0_25\bin;C:\Program Files (x86)\Common Files\NetSarang;E:\app\anelm\product\11.1.0\db_1\bin;E:\app\anelm\product\11.2.0\dbhome_1\bin;C:\ProgramFiles\CommonFiles\MicrosoftShared\WindowsLive;C:\ProgramFiles(x86)\CommonFiles\MicrosoftShared\WindowsLive;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\ProgramFiles\Intel\WiFi\bin\;C:\ProgramFiles\CommonFiles\Intel\WirelessCommon\;C:\ProgramFiles\Lenovo\BluetoothSoftware\;C:\ProgramFiles\Lenovo\BluetoothSoftware\syswow64;C:\ProgramFiles\Broadcom\WHL\;C:\ProgramFiles\Broadcom\WHL\syswow64;C:\ProgramFiles\Broadcom\WHL\SysWow64\;C:\ProgramFiles\Broadcom\WHL\SysWow64\syswow64;C:\ProgramFiles(x86)\WindowsLive\Shared;C:\ProgramFiles(x86)\CommonFiles\Acronis\SnapAPI\;C:\ProgramFiles(x86)\Rational\common;D:\ProgramFiles\MySQL\MySQLServer5.5\bin;D:\Program Files\TortoiseSVN\bin;D:\d_tools\apache-maven-3.0.4\bin;C:\Program Files (x86)\Rational\Common;D:\Android\android-sdk\tools;D:\Android\eclipse;
+USERNAME=anelm
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 42 Stepping 7, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 7 , 64 bit Build 7601 Service Pack 1
+
+CPU:total 4 (2 cores per cpu, 2 threads per core) family 6 model 42 stepping 7, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, aes, ht, tsc, tscinvbit
+
+Memory: 4k page, physical 4136816k(1384888k free), swap 8271780k(5088852k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (24.65-b04) for windows-amd64 JRE (1.7.0_67-b01), built on Jul 25 2014 08:55:00 by "java_re" with unknown MS VC++:1600
+
+time: Sun Oct 26 13:08:20 2014
+elapsed time: 0 seconds
+
