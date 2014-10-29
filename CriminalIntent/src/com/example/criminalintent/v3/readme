@@ -1,0 +1,5 @@
+第11章
+本章将使用ViewPager，可以滑动屏幕。
+FragmentManager要求任何用作Fragment容器的视图都必须有ID!
+
+ListView需要Adapter提供视图，同样ViewPager也需要PagerAdapter支持。

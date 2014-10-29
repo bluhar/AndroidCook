@@ -1,0 +1,34 @@
+第21章 使用隐式intent
+
+隐式intent，我们要向操作系统描述我们的工作意图，操作系统会去启动那些对外宣称能够胜任工作任务的activity.
+
+隐式intent的组成
+	1)要执行的操作，action
+	通过以Intent类中的常量来表示，如访问URL-->Intent.ACTION_VIEW; 发邮件-->Intent.ACTION_SEND。
+	2)要访问数据的位置，data
+	可能是设备以外的资源，比如一个URL，或是指向某个文件的URI。
+	3)操作涉及的数据类型，data type
+	指MIME形式的数据类型，如text/html  audio/mpeg3
+	4)可选类别，category
+	通常是android.intent.category.LAUNCHER 或 android.intent.category.INFO 或 android.intent.category.DEFAULT
+
+intent-filter会去过滤隐式intent.	        
+	    <activity
+            android:name=".BrowserActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <!-- action元素对操作系统宣称，BrowserActivity可以用来浏览网页-->
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+ 如果系统找不到匹配的Activity来完成隐式intent，那么应用会立即崩溃。解决方法，事先查找，如果真的没有，禁用此功能：
+        Intent i = new Intent(Intent.ACTION_SEND);
+        i.setType("text/plain");
+        //如果没有一个activity能够处理当前的隐式intent，将此功能禁用。
+        List<ResolveInfo> activities = pm.queryIntentActivities(i, 0);
+        boolean isSendIntentSafe = activities.size() > 0;
+        if(!isSendIntentSafe) {
+            mReportButton.setEnabled(false);
+        }
