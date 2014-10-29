@@ -1,0 +1,9 @@
+第23章
+
+理解TASK与activity栈
+一个TASK中有一个activity栈
+
+一般在一个activity中启动另一个activity，那么别一个activity也在当前任务中。如果这另一个activity是别的应用的，如果不特殊设置，他仍然属于当前TASK,仍然在当前activity栈中，现象就是长按HOME键启动任务管理器时只能看到当前应用，看到另外一个应用，因为只有一个TASK。
+
+如果想要看到被启动的activity所属的那个应用，需要为intent设置：
+intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); 

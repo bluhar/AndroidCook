@@ -79,6 +79,12 @@
             <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".v9.CrimeListActivity"/>
         </activity>
         <activity
+            android:name="com.example.criminalintent.v10.CrimePagerActivity"
+            android:label="@string/app_name" 
+            >
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".v10.CrimeListActivity"/>
+        </activity>
+        <activity
             android:name="com.example.criminalintent.v8.CrimeCameraActivity"
             android:screenOrientation="landscape"
             android:label="@string/app_name" 
@@ -86,6 +92,12 @@
         </activity>
         <activity
             android:name="com.example.criminalintent.v9.CrimeCameraActivity"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name" 
+            >
+        </activity>
+        <activity
+            android:name="com.example.criminalintent.v10.CrimeCameraActivity"
             android:screenOrientation="landscape"
             android:label="@string/app_name" 
             >
@@ -140,6 +152,14 @@
         </activity>
         <activity
             android:name="com.example.criminalintent.v9.CrimeListActivity"
+            android:label="@string/app_name" >
+<!--             <intent-filter> -->
+<!--                 <action android:name="android.intent.action.MAIN" /> -->
+<!--                 <category android:name="android.intent.category.LAUNCHER" /> -->
+<!--             </intent-filter> -->
+        </activity>
+        <activity
+            android:name="com.example.criminalintent.v10.CrimeListActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
