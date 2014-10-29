@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 目录名是sw600dp，意思是屏幕的最小尺寸是600dp的时候，使用当前的别名资源 -->
+    <item name="activity_masterdetail" type="layout">@layout/activity_twopane</item>
+</resources>
