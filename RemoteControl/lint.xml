@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="IncludeLayoutParam">
+        <ignore path="res/layout/fragment_remote_control.xml" />
+    </issue>
+</lint>
