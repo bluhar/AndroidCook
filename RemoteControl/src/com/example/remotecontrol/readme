@@ -2,3 +2,12 @@
 
 通过本应用，学习使用style(样式)和include标签
 样式类似与CSS样式，每个样式定义了一套XML属性和值的组合，样式也可以具有层级结构：子样式拥有与父样式同样的属性及属性值，但也可覆盖它们或添加另外新的样式。
+
+
+第25章
+
+学习XML Drawable和9-Patches
+XML Drawable有三个： state list drawable, shape drawable, layer list drawable.
+还有一个nine patch drawable.
+
+XML Drawable与像素密度无关，所以自定义drawable xml直接放到drawable目录下。
