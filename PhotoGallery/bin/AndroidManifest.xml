@@ -8,8 +8,15 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="19" />
     
+    <!-- 自定义permission -->
+    <permission android:name="com.example.photogallery.PRIVATE" android:protectionLevel="signature"></permission>
+    
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <!-- 使用自定义permission -->
+    <uses-permission android:name="com.example.photogallery.PRIVATE"/>
+    
 
     <application
         android:allowBackup="true"
@@ -33,7 +40,21 @@
             <meta-data android:name="android.app.searchable" android:resource="@xml/searchable" />
         </activity>
         
-        <service android:name=".PollService"></service>
+        <service android:name=".PollService" ></service>
+        
+        <!-- broadcast receiver 监听系统启动完毕 -->
+        <receiver android:name=".StartupReceiver">
+            <intent-filter >
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+        
+        <receiver android:name=".NotificationReceiver" android:exported="false">
+            <intent-filter android:priority="-999">
+                <action android:name="com.example.photogallery.SHOW_NOTIFICATON"/>
+            </intent-filter>
+        </receiver>
+        
     </application>
 
 </manifest>

@@ -31,7 +31,7 @@ import android.widget.ImageView;
 
 import com.example.photogallery.ThumbnailDownloader.Listener;
 
-public class PhotoGalleryFragment extends Fragment {
+public class PhotoGalleryFragment extends VisibleFragment {
 
     private static final String            TAG = "PhotoGalleryFragment";
 
