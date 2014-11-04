@@ -1,0 +1,66 @@
+
+第26章
+
+AsyncTask是获取后台线程的最简单的方式，但它基本上不适用于重复且长时间运行的任务，只适用短暂且较少重复的任务。
+
+Android的主线程是一个无限循环。
+主线程也是一个消息循环，因此有一个Looper，Looper不断从消息队列中抓取消息，完成消息指定的任务。
+
+ANR: Application Not Responding
+
+Message queue，使用消息队列的线程叫做Message loop(消息循环)，消息循环会不断循环检查队列上是否有新消息。
+消息循环由一个线程和一个Looper组成。Looper对象管理着线程的消息队列。
+
+Message的组成：
+	what--int类型，来标识消息
+	obj--随消息发送的数据
+	target--处理此消息的Handler
+Message在创建时，会自动与一个Handler相关联。	
+	
+Handler
+	Handler不仅仅是处理message的target，也是创建和发布message的接口。
+
+Looper
+	Looper拥有message queue，所以message必须在Looper上发布或读取。HandlerThread来自动创建Looper。
+	
+一个message也仅与一个目标Handler关联；一个Handler仅与一个Looper相关联，但一个Looper可与多个Handler关联，
+
+HandlerThread来负责创建Looper，通常Handler来创建和关联Message，并把Message发送到Looper的Message queue中。
+所以一个HandlerThread类中需要引用Handler。
+
+
+HandlerThread子类如何通过Handler来访问主线程。
+HandlerThread能在主线程上完成任务的一种方式是，让主线程将其自身的Handler传递给HandlerThread.
+主线程是拥有Handler和Looper的消息循环。
+
+
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+
+第28章
+Search功能
+
+启动模式与新的intent
+启动模式决定了activity在收到新intent时的启动方式。
+启动模式：
+	standard -- 默认启动模式，针对每一个收到的新intent，都启动新的activity.
+	singleTop -- 如果activity实例已经在回退栈的顶端，则不创建新的activity，而直接路由新intent给现有activity.
+	singleTask -- 在自身task中启动activity。如果task中activity已存在，则清除回退栈中该activity上的任何activity，然后路由新intent给现有activity.
+	singleInstance -- 在自身task中启动activity。该activity是task中唯一的activity。如果任何其他activity从该task中启动，它们都各自启动到自己的task中。如果task中activity已存在，则直接路由新intent给现有activity.
+	
+使用shared preferences实现轻量级的数据存储
+
+
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+
+第29章
+Service
+
+继承IntentService创建可在后台运行的Service
+使用AlarmManager延迟运行Service
+
+PendingIntent，其实自身封装的仍然是intent
+
+当Service需要通知用户时，这就是notification--通知信息
+	

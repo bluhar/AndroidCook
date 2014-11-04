@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 搜索配置文件
+	对于一些牛X的应用，此文件可能包括很多配置，比如搜索建议，语音搜索，全局搜索配置，操作键配置，输入类型等等。
+ -->
+<searchable xmlns:android="http://schemas.android.com/apk/res/android"
+    android:hint="@string/search_hint"
+    android:label="@string/app_name" >
+
+</searchable>
