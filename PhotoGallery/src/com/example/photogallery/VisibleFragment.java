@@ -9,6 +9,10 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.widget.Toast;
 
+/**
+ * 
+ * 继承此类的fragment，显示后就表示收到了broadcast?还是notification?
+ */
 public abstract class VisibleFragment extends Fragment {
 
     public static final String TAG                 = "VisibleFragment";

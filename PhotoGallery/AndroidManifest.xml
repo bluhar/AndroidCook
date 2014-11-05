@@ -40,6 +40,15 @@
             <meta-data android:name="android.app.searchable" android:resource="@xml/searchable" />
         </activity>
         
+        
+        <!-- 
+        	android:configChanges="keyboardHidden|orientation|screenSize" 
+        	表示当键盘开关、屏幕方向改变、屏幕大小改变而发生设备配置更改，则activity应自己处理配置更改，不用再销毁重新创建
+         -->
+        <activity android:name=".PhotoPageActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            ></activity>
+        
         <service android:name=".PollService" ></service>
         
         <!-- broadcast receiver 监听系统启动完毕 -->
