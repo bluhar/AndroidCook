@@ -15,4 +15,9 @@
     <string name="action_settings">设置</string>
     <string name="action_about">关于</string>
 
+    <string name="feedback_title">课堂反馈</string>
+    <string name="leave_title">请假</string>
+    
+    <string name="punchin_text">上班签到</string>
+    <string name="punchout_text">下班打卡</string>
 </resources>

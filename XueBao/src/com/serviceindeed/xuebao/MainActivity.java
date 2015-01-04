@@ -3,6 +3,7 @@ package com.serviceindeed.xuebao;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,13 +18,14 @@ import android.view.ViewConfiguration;
 import android.view.Window;
 
 import com.astuetz.PagerSlidingTabStrip;
+import com.serviceindeed.xuebao.values.Feedback;
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends FragmentActivity implements FeedbackFragment.Callbacks{
 
 	/**
 	 * 课堂反馈Fragment
 	 */
-	private FeedBackFragment feedFragment;
+	private FeedbackFragment feedFragment;
 
 	/**
 	 * 上下班打卡Fragment
@@ -78,11 +80,12 @@ public class MainActivity extends FragmentActivity {
 		tabs.setTextSize((int) TypedValue.applyDimension(
 				TypedValue.COMPLEX_UNIT_SP, 16, dm));
 		// 设置Tab Indicator的颜色
-		tabs.setIndicatorColor(Color.parseColor("#45c01a"));
+		tabs.setIndicatorColor(Color.parseColor("#87CEFA"));
 		// 设置选中Tab文字的颜色 (这是我自定义的一个方法)
-		tabs.setSelectedTextColor(Color.parseColor("#45c01a"));
+		tabs.setSelectedTextColor(Color.parseColor("#87CEFA"));
 		// 取消点击Tab时的背景色
 		tabs.setTabBackground(0);
+		tabs.setTabPaddingLeftRight(20);
 	}
 
 	public class MyPagerAdapter extends FragmentPagerAdapter {
@@ -91,7 +94,7 @@ public class MainActivity extends FragmentActivity {
 			super(fm);
 		}
 
-		private final String[] titles = { "课堂反馈", "上下班打卡", "请假" };
+		private final String[] titles = { "课堂反馈", "打卡", "请假" };
 
 		@Override
 		public CharSequence getPageTitle(int position) {
@@ -108,7 +111,7 @@ public class MainActivity extends FragmentActivity {
 			switch (position) {
 			case 0:
 				if (feedFragment == null) {
-					feedFragment = new FeedBackFragment();
+					feedFragment = new FeedbackFragment();
 				}
 				return feedFragment;
 			case 1:
@@ -162,5 +165,13 @@ public class MainActivity extends FragmentActivity {
 			e.printStackTrace();
 		}
 	}
+
+    @Override
+    public void onFeedbackSelected(Feedback feedback) {
+        //show the feedback detail fragment
+        Intent i = new Intent(this, FeedbackDetailActivity.class);
+        i.putExtra(FeedbackDetailFragment.EXTRA_FEEDBACK_ID, feedback.getId());
+        startActivity(i);
+    }
 
 }

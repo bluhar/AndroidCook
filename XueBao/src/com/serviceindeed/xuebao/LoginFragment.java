@@ -33,7 +33,7 @@ public class LoginFragment extends Fragment{
                 //Pass the verify, then show the main page else shot a shot toast
                 //Now, mock the result is success, show the main page.
                 Intent i = new Intent(getActivity(), MainActivity.class);
-                startActivity(i);
+                startActivityForResult(i, 1);
             }
         });
         

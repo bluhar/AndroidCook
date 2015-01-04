@@ -11,21 +11,8 @@ public class PunchFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        return super.onCreateView(inflater, container, savedInstanceState);
+        View view = inflater.inflate(R.layout.fragment_punch, container, false);
+        return view;
 
-        //		LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        //		FrameLayout fl = new FrameLayout(getActivity());
-        //		fl.setLayoutParams(params);
-        //		DisplayMetrics dm = getResources().getDisplayMetrics();
-        //		final int margin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, dm);
-        //		TextView v = new TextView(getActivity());
-        //		params.setMargins(margin, margin, margin, margin);
-        //		v.setLayoutParams(params);
-        //		v.setLayoutParams(params);
-        //		v.setGravity(Gravity.CENTER);
-        //		v.setText("发现界面");
-        //		v.setTextSize((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 12, dm));
-        //		fl.addView(v);
-        //		return fl;
     }
 }
