@@ -13,12 +13,12 @@ public class LoginActivity extends SingleFragmentActivity {
         return new LoginFragment();
     }
 
-    @Override
+/*    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.i(TAG, "requestCode=" + requestCode + ", resultCode=" + resultCode);
         if (requestCode == 1 && resultCode == RESULT_CANCELED) {
             finish();
         }
-    }
+    }*/
 
 }

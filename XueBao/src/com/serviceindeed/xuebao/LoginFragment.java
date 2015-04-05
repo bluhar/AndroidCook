@@ -32,8 +32,12 @@ public class LoginFragment extends Fragment{
                 //TODO Verify the login name and password
                 //Pass the verify, then show the main page else shot a shot toast
                 //Now, mock the result is success, show the main page.
-                Intent i = new Intent(getActivity(), MainActivity.class);
-                startActivityForResult(i, 1);
+                /*Intent i = new Intent(getActivity(), MainActivity.class);
+                startActivityForResult(i, 1);*/
+                
+                Intent startIntent = new Intent(getActivity(), MainActivity.class);
+                startIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);        
+                startActivity(startIntent);
             }
         });
         

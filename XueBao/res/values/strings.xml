@@ -1,23 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">学宝</string>
     
-    
-    
+    <!-- Login page -->
     <string name="login_logo_desc">登录Logo</string>
     <string name="login_username_hint">用户名</string>
     <string name="login_pwd_hint">密码</string>
     <string name="login_text">登录</string>
     <string name="forget_pwd_text">忘记密码？</string>
     
-    <string name="action_ask_leave">我要请假</string>
+    <!-- menu more -->
+    <string name="action_ask_leave">请假申请</string>
+    <string name="action_ask_punch">签到</string>
     <string name="action_settings">设置</string>
     <string name="action_about">关于</string>
 
-    <string name="feedback_title">课堂反馈</string>
-    <string name="leave_title">请假</string>
-    
+    <!-- 签到 page -->
     <string name="punchin_text">上班签到</string>
-    <string name="punchout_text">下班打卡</string>
+    <string name="punchout_text">下班签退</string>
+    <!-- 签到明细fragment text  -->
+    <string name="punch_detail_fragment_type">类型</string>
+    <string name="punch_detail_fragment_location">位置</string>
+    <string name="punch_detail_fragment_refresh">刷新</string>
+    <string name="punch_detail_fragment_remark">备注</string>
+    <string name="punch_detail_fragment_submit">提交</string>
+    
+    <!-- Date picker activity title -->
+    <string name="date_picker_title">请选择日期</string>
+    
+    <!-- 请假明细 activity title, 分别对应新增和修改  -->
+    <string name="leave_fragment_request">请假申请</string>
+    <string name="leave_fragment_detail">请假明细</string>
+    <!-- 请假明细fragment text  -->
+    <string name="leave_detail_fragment_type">请假类型</string>
+    <string name="leave_detail_fragment_start_date">开始时间</string>
+    <string name="leave_detail_fragment_end_date">结束时间</string>
+    <string name="leave_detail_fragment_reason">请假事由</string>
+    <string name="leave_detail_fragment_save">保存</string>
+    <string name="leave_detail_fragment_submit">提交</string>
+    
+    <!-- <string name="feedback_title">课堂反馈</string> -->
+    <!-- <string name="leave_title">请假</string> -->
+
 </resources>

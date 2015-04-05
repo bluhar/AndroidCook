@@ -1,8 +1,5 @@
 package com.serviceindeed.xuebao;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,16 +8,21 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.PopupMenu;
+import android.support.v7.widget.PopupMenu.OnMenuItemClickListener;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Menu;
-import android.view.ViewConfiguration;
-import android.view.Window;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.serviceindeed.xuebao.values.Feedback;
+import com.serviceindeed.xuebao.values.Leave;
+import com.serviceindeed.xuebao.values.Punch;
 
-public class MainActivity extends FragmentActivity implements FeedbackFragment.Callbacks{
+public class MainActivity extends FragmentActivity implements FeedbackFragment.Callbacks, PunchFragment.Callbacks, LeaveFragment2.Callbacks{
 
 	/**
 	 * 课堂反馈Fragment
@@ -35,7 +37,7 @@ public class MainActivity extends FragmentActivity implements FeedbackFragment.C
 	/**
 	 * 请假Fragment
 	 */
-	private LeaveFragment leaveFragment;
+	private LeaveFragment2 leaveFragment;
 
 	/**
 	 * PagerSlidingTabStrip的实例
@@ -51,13 +53,16 @@ public class MainActivity extends FragmentActivity implements FeedbackFragment.C
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		setOverflowShowingAlways();
+		//setOverflowShowingAlways();
 		
 		dm = getResources().getDisplayMetrics();
 		ViewPager pager = (ViewPager) findViewById(R.id.pager);
 		tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
+
 		
-		pager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
+		String[] tabNames = this.getResources().getStringArray(R.array.tab_names);
+		
+		pager.setAdapter(new MyPagerAdapter(getSupportFragmentManager(), tabNames));
 		tabs.setViewPager(pager);
 		setTabsValue();
 	}
@@ -89,12 +94,14 @@ public class MainActivity extends FragmentActivity implements FeedbackFragment.C
 	}
 
 	public class MyPagerAdapter extends FragmentPagerAdapter {
+	    
+//		private final String[] titles = { "课堂反馈", "打卡", "请假" };
+	    private String[] titles;
 
-		public MyPagerAdapter(FragmentManager fm) {
+		public MyPagerAdapter(FragmentManager fm, String[] tabNames) {
 			super(fm);
+			this.titles = tabNames;
 		}
-
-		private final String[] titles = { "课堂反馈", "打卡", "请假" };
 
 		@Override
 		public CharSequence getPageTitle(int position) {
@@ -121,7 +128,7 @@ public class MainActivity extends FragmentActivity implements FeedbackFragment.C
 				return punchFragment;
 			case 2:
 				if (leaveFragment == null) {
-					leaveFragment = new LeaveFragment();
+					leaveFragment = new LeaveFragment2();
 				}
 				return leaveFragment;
 			default:
@@ -131,46 +138,112 @@ public class MainActivity extends FragmentActivity implements FeedbackFragment.C
 
 	}
 
+	/**
+	 * 在如何通过menu再创建popup menu, block了很久
+	 * Reference:http://stackoverflow.com/questions/24634136/menu-popup-helper-cannot-be-used-without-anchor
+	 * @param item
+	 */
+	public void showPopup(MenuItem item) {
+
+        final View menuItemView = this.findViewById(item.getItemId());
+	    PopupMenu popup = new PopupMenu(this, menuItemView);
+	    popup.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_ask_leave:
+                        MainActivity.this.onLeaveSelected(null);
+                        return true;
+                    case R.id.action_ask_punch:
+                        MainActivity.this.onPunchSelected(null);
+                        return true;
+                    case R.id.action_settings:
+                        return true;
+                    case R.id.action_about:
+                        return true;
+                    default:
+                        return false;
+                }            
+            }
+        });
+	    
+	    MenuInflater inflater = popup.getMenuInflater();
+	    inflater.inflate(R.menu.main_popup_menu, popup.getMenu());
+	    popup.show();
+	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
+	
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.show_popup_menu:
+                this.showPopup(item);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+	
+	
 
-	@Override
-	public boolean onMenuOpened(int featureId, Menu menu) {
-		if (featureId == Window.FEATURE_ACTION_BAR && menu != null) {
-			if (menu.getClass().getSimpleName().equals("MenuBuilder")) {
-				try {
-					Method m = menu.getClass().getDeclaredMethod(
-							"setOptionalIconsVisible", Boolean.TYPE);
-					m.setAccessible(true);
-					m.invoke(menu, true);
-				} catch (Exception e) {
-				}
-			}
-		}
-		return super.onMenuOpened(featureId, menu);
-	}
+//	@Override
+//	public boolean onMenuOpened(int featureId, Menu menu) {
+//		if (featureId == Window.FEATURE_ACTION_BAR && menu != null) {
+//			if (menu.getClass().getSimpleName().equals("MenuBuilder")) {
+//				try {
+//					Method m = menu.getClass().getDeclaredMethod(
+//							"setOptionalIconsVisible", Boolean.TYPE);
+//					m.setAccessible(true);
+//					m.invoke(menu, true);
+//				} catch (Exception e) {
+//				}
+//			}
+//		}
+//		return super.onMenuOpened(featureId, menu);
+//	}
 
-	private void setOverflowShowingAlways() {
-		try {
-		    //这里利用反射找到sHasPermanentMenuKey属性是要做什么？
-			ViewConfiguration config = ViewConfiguration.get(this);
-			Field menuKeyField = ViewConfiguration.class
-					.getDeclaredField("sHasPermanentMenuKey");
-			menuKeyField.setAccessible(true);
-			menuKeyField.setBoolean(config, false);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+//	private void setOverflowShowingAlways() {
+//		try {
+//		    //这里利用反射找到sHasPermanentMenuKey属性是要做什么？
+//			ViewConfiguration config = ViewConfiguration.get(this);
+//			Field menuKeyField = ViewConfiguration.class
+//					.getDeclaredField("sHasPermanentMenuKey");
+//			menuKeyField.setAccessible(true);
+//			menuKeyField.setBoolean(config, false);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 
     @Override
     public void onFeedbackSelected(Feedback feedback) {
         //show the feedback detail fragment
         Intent i = new Intent(this, FeedbackDetailActivity.class);
         i.putExtra(FeedbackDetailFragment.EXTRA_FEEDBACK_ID, feedback.getId());
+        startActivity(i);
+    }
+
+    @Override
+    public void onLeaveSelected(Leave leave) {
+        //当请假item被点击后，
+        Intent i = new Intent(this, LeaveDetailActivity.class);
+        if (leave != null) {
+            i.putExtra(LeaveDetailFragment.EXTRA_LEAVE_ID, leave.getId());
+        }
+        startActivity(i);
+    }
+
+    @Override
+    public void onPunchSelected(Punch punch) {
+        Intent i = new Intent(this, PunchDetailActivity.class);
+        if (punch != null) {
+            i.putExtra(PunchDetailFragment.EXTRA_PUNCH_ID, punch.getId());
+        }
         startActivity(i);
     }
 

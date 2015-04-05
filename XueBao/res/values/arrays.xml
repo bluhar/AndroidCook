@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="leave_types">
+        <item>年假</item>
+        <item>调休</item>
+        <item>事假</item>
+        <item>病假</item>
+        <item>产假</item>
+        <item>陪产假</item>
+    </string-array>
+    
+    <string-array name="punch_types">
+        <item>上班签到</item>
+        <item>下班签退</item>
+    </string-array>
+    
+    <string-array name="tab_names">
+        <item>课堂反馈</item>
+        <item>签到</item>
+        <item>请假</item>
+    </string-array>
+
+</resources>

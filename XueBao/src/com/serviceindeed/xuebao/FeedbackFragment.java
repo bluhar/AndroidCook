@@ -32,6 +32,7 @@ public class FeedbackFragment extends ListFragment {
         super.onAttach(activity);
         //从下面这行代码也可以看出，任何打算托管CrimeListFragment的Activity都要实现此接口
         mCallbacks = (Callbacks) activity;
+        //getActivity().setTitle(R.string.feedback_title);
     }
 
     @Override
@@ -49,7 +50,6 @@ public class FeedbackFragment extends ListFragment {
 
         setRetainInstance(true); //保留Fragment
 
-        getActivity().setTitle(R.string.feedback_title);
         //        mCrimes = CrimeLab.getInstance(getActivity()).getCrimes();
 
         FeedbackAdapter adapter = new FeedbackAdapter(getFeedbacks());

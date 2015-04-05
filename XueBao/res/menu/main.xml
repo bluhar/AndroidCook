@@ -1,15 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.wechatsample.MainActivity" >
+    tools:context="com.serviceindeed.xuebao.MainActivity" >
 
     <item
-        android:id="@+id/action_ask_leave"
-        android:title="@string/action_ask_leave"/>
-    <item
-        android:id="@+id/action_settings"
-        android:title="@string/action_settings"/>
-    <item
-        android:id="@+id/action_about"
-        android:title="@string/action_about"/>
+        android:id="@+id/show_popup_menu"
+        android:icon="@drawable/ic_menu_moreoverflow_normal_holo_dark"
+        android:showAsAction="always"
+        android:title="@string/app_name"/>
 
 </menu>

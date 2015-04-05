@@ -42,7 +42,7 @@ public class LeaveFragment extends ListFragment {
 
         setRetainInstance(true); //保留Fragment
 
-        getActivity().setTitle(R.string.leave_title);
+//        getActivity().setTitle(R.string.leave_title);
 
         LeaveAdapter adapter = new LeaveAdapter(getLeaves());
         setListAdapter(adapter);
