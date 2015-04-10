@@ -9,6 +9,10 @@
     <string name="login_text">登录</string>
     <string name="forget_pwd_text">忘记密码？</string>
     
+    <string name="pull_to_refresh_pull_label">下拉刷新…</string>
+    <string name="pull_to_refresh_release_label">放开以刷新…</string>
+    <string name="pull_to_refresh_refreshing_label">正在载入…</string>
+    
     <!-- menu more -->
     <string name="action_ask_leave">请假申请</string>
     <string name="action_ask_punch">签到</string>

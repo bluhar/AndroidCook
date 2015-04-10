@@ -7,7 +7,9 @@ public class Punch {
     private int    mId;
     private String mType;  //上班 下班
     private String mRemark; //备注
+    private String mLocation; //备注
     private Date   mCreate; //创建时间
+    
 
     public int getId() {
         return mId;
@@ -15,6 +17,16 @@ public class Punch {
 
     public void setId(int id) {
         mId = id;
+    }
+
+    
+    public String getLocation() {
+        return mLocation;
+    }
+
+    
+    public void setLocation(String location) {
+        mLocation = location;
     }
 
     public String getType() {

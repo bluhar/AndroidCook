@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainBackground"
+    android:paddingLeft="7dp"
+    android:paddingRight="7dp" >
+
+    <!--
+    Set divider height
+        http://stackoverflow.com/questions/4984313/spacing-between-listview-items-android
+
+	使用自定义的attr
+		http://androidbook.com/item/4169
+		http://stackoverflow.com/questions/22070456/how-to-edit-custom-xml-from-pull-to-refresh-library
+    -->
+
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/feedback_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="5.0sp"
+        ptr:ptrHeaderTextColor="#2b2b2b"
+        ptr:ptrMode="both"
+        ptr:ptrHeaderTextAppearance="@android:attr/textAppearanceMedium"
+         />
+
+</RelativeLayout>

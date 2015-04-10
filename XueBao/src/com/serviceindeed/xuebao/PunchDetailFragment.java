@@ -62,7 +62,6 @@ public class PunchDetailFragment extends Fragment{
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         s.setAdapter(adapter);
         
-        
         return view;
     }
 

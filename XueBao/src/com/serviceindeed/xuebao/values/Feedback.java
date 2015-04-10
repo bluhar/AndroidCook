@@ -6,6 +6,7 @@ public class Feedback {
 
     private int    mId;
     private String mContent;
+    private String mName;
     private Date   mCreateDate;
 
     public int getId() {
@@ -14,6 +15,14 @@ public class Feedback {
 
     public void setId(int id) {
         mId = id;
+    }
+
+    public String getName() {
+        return mName;
+    }
+
+    public void setName(String name) {
+        mName = name;
     }
 
     public String getContent() {
