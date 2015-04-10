@@ -12,15 +12,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
 
-import com.github.jjobes.slidedatetimepicker.SlideDateTimeListener;
-import com.github.jjobes.slidedatetimepicker.SlideDateTimePicker;
-import com.serviceindeed.xuebao.values.Leave;
 import com.serviceindeed.xuebao.values.Punch;
 
 
@@ -61,6 +57,16 @@ public class PunchDetailFragment extends Fragment{
         ArrayAdapter adapter = ArrayAdapter.createFromResource(getActivity(), R.array.punch_types, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         s.setAdapter(adapter);
+        
+        Button submitBtn = (Button) view.findViewById(R.id.punchDetailSubmitBtn);
+        if(mPunch == null ) {
+            //新建
+            submitBtn.setVisibility(View.VISIBLE);
+        }
+        else{
+            //修改
+            submitBtn.setVisibility(View.GONE);
+        }
         
         return view;
     }

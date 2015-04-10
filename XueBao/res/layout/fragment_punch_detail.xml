@@ -94,7 +94,8 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="40dp"
-        android:background="#87CEFA"
+        android:background="@color/bgMain"
+        android:textColor="@color/white"
         android:text="@string/punch_detail_fragment_submit"
         android:textAlignment="center" />
 

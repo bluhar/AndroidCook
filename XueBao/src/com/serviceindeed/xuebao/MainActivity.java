@@ -12,10 +12,12 @@ import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.PopupMenu.OnMenuItemClickListener;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.serviceindeed.xuebao.values.Feedback;
@@ -51,7 +53,27 @@ public class MainActivity extends FragmentActivity implements FeedbackFragment.C
 	 */
 	private DisplayMetrics dm;
 
-	@Override
+    private long firstTime;
+	
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                long secondTime = System.currentTimeMillis();
+                if (secondTime - firstTime > 2000) { //如果两次按键时间间隔大于2秒，则不退出  
+                    Toast.makeText(this, "再按一次退出程序!", Toast.LENGTH_SHORT).show();
+                    firstTime = secondTime;//更新firstTime  
+                    return true;
+                }
+                else { //两次按键小于2秒时，退出应用  
+                    System.exit(0);
+                }
+                break;
+        }
+        return super.onKeyUp(keyCode, event);
+    }
+
+    @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
@@ -172,8 +194,6 @@ public class MainActivity extends FragmentActivity implements FeedbackFragment.C
                         MainActivity.this.onPunchSelected(null);
                         return true;
                     case R.id.action_settings:
-                        return true;
-                    case R.id.action_about:
                         return true;
                     default:
                         return false;

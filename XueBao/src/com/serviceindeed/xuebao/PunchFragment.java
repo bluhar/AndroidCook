@@ -4,16 +4,13 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import android.app.Activity;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
@@ -35,9 +32,9 @@ public class PunchFragment extends Fragment implements AnimationListener{
     ListAdapter mAdapter;
     ListView mList;
     ImageView mImageView;
-    boolean hideAnimatied = false;
-    boolean showAnimatied = false;
+    boolean hidedAnimation = false;
     private Animation mInAnim, mOutAnim;
+    int mLastFirstVisibleItem;
 
     public interface Callbacks {
         void onPunchSelected(Punch punch);
@@ -59,11 +56,8 @@ public class PunchFragment extends Fragment implements AnimationListener{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-    
-    
 
-
-    private void bindAnimation(final int x, final int y){
+    private void bindAnimation(){
         mList.setOnScrollListener(new OnScrollListener() {
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, 
@@ -72,33 +66,16 @@ public class PunchFragment extends Fragment implements AnimationListener{
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
                 final ListView lw = mList;
+
                 if (view.getId() == lw.getId()) {
                     final int currentFirstVisibleItem = lw.getFirstVisiblePosition();
-                    if ((mImageView.getVisibility() == View.VISIBLE) && currentFirstVisibleItem >= 1) {
-                        Log.e("TEST", currentFirstVisibleItem + "|=" + hideAnimatied + "|" + showAnimatied + "|" +x + "|" + y);
-                        //隐藏
+                    if (!hidedAnimation && currentFirstVisibleItem > mLastFirstVisibleItem) {
                         mImageView.startAnimation(mOutAnim);
                     }
-                    if ((mImageView.getVisibility() == View.GONE) && currentFirstVisibleItem == 0) {
-                        Log.e("TEST", currentFirstVisibleItem + "|=" + hideAnimatied + "|" + showAnimatied + "|" +x + "|" + y);
-                        //显示
+                    else if (hidedAnimation && currentFirstVisibleItem < mLastFirstVisibleItem) {
                         mImageView.startAnimation(mInAnim);
                     }
-//                    if (!hideAnimatied && currentFirstVisibleItem == 1) {
-//                        Log.e("TEST", currentFirstVisibleItem + "|=" + hideAnimatied + "|" + showAnimatied + "|" +x + "|" + y);
-//                        //隐藏
-//                        mOutAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_out_to_bottom);
-//                        mOutAnim.setAnimationListener(PunchFragment.this);
-//                        mImageView.startAnimation(mOutAnim);
-//                    }
-//                    if (hideAnimatied && !showAnimatied && currentFirstVisibleItem == 0) {
-//                        Log.e("TEST", currentFirstVisibleItem + "|=" + hideAnimatied + "|" + showAnimatied + "|" +x + "|" + y);
-//                        //显示
-//                        mInAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_from_bottom);
-//                        mInAnim.setAnimationListener(PunchFragment.this);
-//                        mImageView.startAnimation(mInAnim);
-//                        
-//                    }
+                    mLastFirstVisibleItem = currentFirstVisibleItem;
                 }
             }
         });
@@ -114,10 +91,10 @@ public class PunchFragment extends Fragment implements AnimationListener{
         mAdapter = new PunchAdapter(mockPunchs()); //获取请假的list
         mList.setAdapter(mAdapter);
         
-        mOutAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_out_to_bottom);
+        mOutAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_out_to_bottom_punch);
         mOutAnim.setAnimationListener(PunchFragment.this);
         
-        mInAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_from_bottom);
+        mInAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_from_bottom_punch);
         mInAnim.setAnimationListener(PunchFragment.this);
         
         mList.setOnItemClickListener(new OnItemClickListener() {
@@ -128,29 +105,30 @@ public class PunchFragment extends Fragment implements AnimationListener{
             }
         });
         
+        this.bindAnimation();
+        
         //监听当view都被渲染后，只有组件被渲染后才可以获得控件的位置
         // set a global layout listener which will be called when the layout pass is completed and the view is drawn
-        view.getViewTreeObserver().addOnGlobalLayoutListener(
-            new ViewTreeObserver.OnGlobalLayoutListener() {
-                public void onGlobalLayout() {
-                    //Remove the listener before proceeding
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                        view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                    }
-                    else {
-                        view.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-                    }
-    
-                    // measure your views here
-                    int x = Math.round(mImageView.getX());
-                    int y = Math.round(mImageView.getY());
-                    bindAnimation(x,y);
-                }
-        });
+//        view.getViewTreeObserver().addOnGlobalLayoutListener(
+//            new ViewTreeObserver.OnGlobalLayoutListener() {
+//                public void onGlobalLayout() {
+//                    //Remove the listener before proceeding
+//                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+//                        view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+//                    }
+//                    else {
+//                        view.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+//                    }
+//    
+//                    // measure your views here
+//                    int x = Math.round(mImageView.getX());
+//                    int y = Math.round(mImageView.getY());
+//                    bindAnimation(x,y);
+//                }
+//        });
 
         
-        ImageView createLeaveBtn = (ImageView) view.findViewById(R.id.createPunchBtn);
-        createLeaveBtn.setOnClickListener(new OnClickListener() {
+        mImageView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 // 启动leave detail activity
@@ -170,7 +148,7 @@ public class PunchFragment extends Fragment implements AnimationListener{
             punch.setCreate(new Date());
             punch.setLocation("上海市杨浦区国权路525号");
             if(i%2 == 1) {
-                punch.setRemark("限时抢购请求参数限时抢购请求参数限时抢购请求参数限时抢购请求参数限时抢购请求参数限时抢购请求参数限时抢购请求参数限时抢购请求参数限时抢购请求参数限时抢购请求参数限时抢购请求参数");
+                punch.setRemark("签到测试....");
             }
             list.add(punch);            
         }
@@ -220,27 +198,27 @@ public class PunchFragment extends Fragment implements AnimationListener{
 
     @Override
     public void onAnimationStart(Animation animation) {
-        // TODO Auto-generated method stub
+        if (animation == mOutAnim) {
+            hidedAnimation = true;
+        } else if (animation == mInAnim) {
+            hidedAnimation = false;
+        }
     }
 
     @Override
     public void onAnimationEnd(Animation animation) {
-        // TODO Auto-generated method stub
         if (animation == mOutAnim) {
             mImageView.setVisibility(View.GONE);
-            hideAnimatied = true;
-            showAnimatied = false;
+            hidedAnimation = true;
         } else if (animation == mInAnim) {
             mImageView.setVisibility(View.VISIBLE);
-            hideAnimatied = false;
-            showAnimatied = true;
+            hidedAnimation = false;
         }
         mImageView.clearAnimation();
     }
 
     @Override
     public void onAnimationRepeat(Animation animation) {
-        // TODO Auto-generated method stub
     }
     
 }

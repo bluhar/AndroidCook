@@ -126,7 +126,7 @@ public class FeedbackFragment extends Fragment {
         @Override
         protected String[] doInBackground(Void... params) {
             try {
-                Thread.sleep(3000);
+                Thread.sleep(600);
             }
             catch (InterruptedException e) {
                 e.printStackTrace();

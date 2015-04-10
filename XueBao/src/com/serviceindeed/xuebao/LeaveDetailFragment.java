@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -95,13 +96,17 @@ public class LeaveDetailFragment extends Fragment {
         //container是Fragment的父视图，第三个参数告知布局生成器是否将生成的视图添加到父视图
         View view = inflater.inflate(R.layout.fragment_leave_detail, container, false);
         
+        Button submitBtn = (Button) view.findViewById(R.id.submitBtn);
         if(mLeave == null) {
             getActivity().setTitle(R.string.leave_fragment_request);
+            //新建
+            submitBtn.setVisibility(View.VISIBLE);
         }
         else {
             getActivity().setTitle(R.string.leave_fragment_detail);
+            //修改
+            submitBtn.setVisibility(View.GONE);
         }
-
 
         //设置spinner，date picker, submit button
 
