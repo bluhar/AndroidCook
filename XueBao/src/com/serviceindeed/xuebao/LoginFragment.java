@@ -10,6 +10,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class LoginFragment extends Fragment {
 
@@ -18,9 +19,7 @@ public class LoginFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //TODO Read the login name from preference file.
 
-//        getActivity().getActionBar().hide();
     }
 
     @Override
@@ -39,7 +38,9 @@ public class LoginFragment extends Fragment {
                 startActivityForResult(i, 1);*/
 
                 Intent startIntent = new Intent(getActivity(), MainActivity.class);
-                startIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                startIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
                 /**
                  * 如果登录成功，传参数
                  */
@@ -47,35 +48,16 @@ public class LoginFragment extends Fragment {
                 startActivity(startIntent);
             }
         });
+        
+        TextView forgetPwdView = (TextView) view.findViewById(R.id.forget_pwd);
+        forgetPwdView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), ForgetPasswordActivity.class);
+                startActivity(i);
+            }
+        });
 
-        /*        if (getIntent().hasExtra(ObjectListActivity.INTENT_EXTRA_RESTART)) {
-                    restart = getIntent().getExtras().getBoolean(ObjectListActivity.INTENT_EXTRA_RESTART);
-                    getIntent().getExtras().remove(ObjectListActivity.INTENT_EXTRA_RESTART);
-                }*/
-   /*     final ImageView splashImage = (ImageView) view.findViewById(R.id.imageViewSplash);
-        splashImage.setVisibility(View.GONE);
-        if (isLastActivity() && !restart) {
-            restart = true;
-
-            splashImage.setVisibility(View.VISIBLE);
-            splashImage.bringToFront();
-            new Handler().postDelayed(new Runnable() {
-
-                @Override
-                public void run() {
-                    getActivity().getActionBar().show();
-                    splashImage.setVisibility(View.GONE);
-                }
-            }, 2000);
-        }
-        else {
-            getActivity().getActionBar().show();
-            splashImage.setVisibility(View.GONE);
-        }*/
-
-        //        if (!isLastActivity() && !restart) {
-        //            findViewById(R.id.imageViewBanner).setVisibility(View.GONE);
-        //        }
 
         return view;
     }

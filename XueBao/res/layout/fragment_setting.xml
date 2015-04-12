@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical" >
+
+        <LinearLayout style="@style/SettingLinear" >
+
+            <TextView
+                android:id="@+id/setting_share"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="@string/setting_share" />
+
+            <ImageView style="@style/RightArrow" />
+        </LinearLayout>
+
+        <View
+            style="@style/DividerSetting"
+            android:layout_marginLeft="15dp" />
+
+        <LinearLayout style="@style/SettingLinear" >
+
+            <TextView
+                android:id="@+id/setting_grade"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="@string/setting_grade" />
+
+            <ImageView style="@style/RightArrow" />
+        </LinearLayout>
+
+        <View
+            style="@style/DividerSetting"
+            android:layout_marginLeft="15dp" />
+
+        <LinearLayout style="@style/SettingLinear" >
+
+            <TextView
+                android:id="@+id/setting_feedback"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="@string/setting_feedback" />
+
+            <ImageView style="@style/RightArrow" />
+        </LinearLayout>
+
+        <View
+            style="@style/DividerSetting"
+            android:layout_marginLeft="15dp" />
+
+        <LinearLayout style="@style/SettingLinear" >
+
+            <TextView
+                android:id="@+id/setting_about"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="@string/setting_about" />
+
+            <TextView
+                android:id="@+id/setting_version"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:gravity="center_vertical" />
+
+            <ImageView style="@style/RightArrow" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View style="@style/Divider" />
+
+    <Button
+        android:id="@+id/setting_logout_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/logout_button"
+        android:gravity="center"
+        android:text="@string/setting_logout"
+        android:textColor="@android:color/holo_red_dark" />
+
+</LinearLayout>

@@ -22,8 +22,8 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="25dp"
         android:background="@null"
-        android:src="@drawable/btn_new" />
-    
+        android:src="@drawable/btn_new"
+         />
         
 
 </RelativeLayout>

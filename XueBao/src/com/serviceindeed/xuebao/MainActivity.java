@@ -61,7 +61,7 @@ public class MainActivity extends FragmentActivity implements FeedbackFragment.C
             case KeyEvent.KEYCODE_BACK:
                 long secondTime = System.currentTimeMillis();
                 if (secondTime - firstTime > 2000) { //如果两次按键时间间隔大于2秒，则不退出  
-                    Toast.makeText(this, "再按一次退出程序!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.exit_app_toast, Toast.LENGTH_SHORT).show();
                     firstTime = secondTime;//更新firstTime  
                     return true;
                 }
@@ -193,6 +193,8 @@ public class MainActivity extends FragmentActivity implements FeedbackFragment.C
                         MainActivity.this.onPunchSelected(null);
                         return true;
                     case R.id.action_settings:
+                        Intent i = new Intent(MainActivity.this, SettingActivity.class);
+                        startActivity(i);
                         return true;
                     default:
                         return false;

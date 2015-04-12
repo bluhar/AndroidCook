@@ -2,12 +2,28 @@
 <resources>
     <string name="app_name">学宝</string>
     
+    <string name="exit_app_toast">再按一次退出程序!</string>
     <!-- Login page -->
     <string name="login_logo_desc">登录Logo</string>
     <string name="login_username_hint">用户名</string>
     <string name="login_pwd_hint">密码</string>
     <string name="login_text">登录</string>
     <string name="forget_pwd_text">忘记密码？</string>
+    <!-- 忘记密码 page -->
+    <string name="forget_pwd_findpwd">找回密码</string>
+    <string name="forget_pwd_hint">注册邮箱</string>
+    <string name="forget_pwd_label">Email</string>
+    <string name="forget_pwd_submit">提交</string>
+    <string name="forget_pwd_tip">系统将把新密码发送到您的邮箱，请正确填写</string>
+    <!-- Setting page -->
+    <string name="setting_share">推荐给好友</string>
+    <string name="setting_grade">评个分吧</string>
+    <string name="setting_feedback">反馈</string>
+    <string name="setting_about">检查新版本</string>
+    <string name="setting_logout">退出登录</string>
+    <string name="setting_app_feedback_hint">请输入您的宝贵意见</string>
+    <string name="setting_app_feedback_submit">提交意见</string>
+    <string name="setting_app_feedback_success">提交反馈成功!</string>
     
     <string name="pull_to_refresh_pull_label">下拉刷新…</string>
     <string name="pull_to_refresh_release_label">放开以刷新…</string>

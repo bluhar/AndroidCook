@@ -8,7 +8,7 @@ import android.os.Handler;
 public class Splash extends Activity {
 
     /** Duration of wait **/
-    private final int SPLASH_DISPLAY_LENGTH = 1000 * 1;
+    private final int SPLASH_DISPLAY_LENGTH = 1500 * 1;
 
     /** Called when the activity is first created. */
     @Override

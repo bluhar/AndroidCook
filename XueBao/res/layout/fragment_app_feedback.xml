@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/app_feedback_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="@string/setting_app_feedback_hint"
+        android:inputType="textMultiLine"
+        android:lines="5"
+        android:textSize="16dp" >
+
+        <requestFocus />
+    </EditText>
+
+<!--         android:layout_marginTop="30dp" -->
+    <Button
+        android:id="@+id/setting_app_feedback_submit"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignBottom="@id/app_feedback_content"
+        android:background="@color/bgMain"
+        android:gravity="center"
+        android:text="@string/setting_app_feedback_submit"
+        android:textColor="@color/white" />
+
+</RelativeLayout>
