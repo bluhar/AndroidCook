@@ -27,7 +27,7 @@ import com.serviceindeed.xuebao.values.Punch;
 public class MainActivity extends FragmentActivity implements FeedbackFragment.Callbacks, PunchFragment.Callbacks, LeaveFragment2.Callbacks{
     
     public static final String EXTRA_LOGIN_STATUS = "com.serviceindeed.xuebao.login_status";
-
+    
 	/**
 	 * 课堂反馈Fragment
 	 */
@@ -76,14 +76,13 @@ public class MainActivity extends FragmentActivity implements FeedbackFragment.C
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		setContentView(R.layout.activity_main);
 		//setOverflowShowingAlways();
 		
 		dm = getResources().getDisplayMetrics();
 		ViewPager pager = (ViewPager) findViewById(R.id.pager);
 		tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
-
-		
 		String[] tabNames = this.getResources().getStringArray(R.array.tab_names);
 		
 		pager.setAdapter(new MyPagerAdapter(getSupportFragmentManager(), tabNames));

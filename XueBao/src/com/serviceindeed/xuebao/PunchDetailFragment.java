@@ -12,11 +12,18 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
 import com.serviceindeed.xuebao.values.Punch;
 
 
@@ -26,11 +33,21 @@ public class PunchDetailFragment extends Fragment{
     
     private SimpleDateFormat      mFormatter             = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private Punch                 mPunch;
+    private Animation mRotateAnim;
+    private LocationClient mLocationClient;
+    private TextView mPunchLocationView;
+    ImageView mRefreshBtn;
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
     }
+    
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +63,16 @@ public class PunchDetailFragment extends Fragment{
         }
         
     }
+    
+    private void initLocation(){
+        LocationClientOption option = new LocationClientOption();
+//        option.setLocationMode(tempMode);//设置定位模式
+//        option.setCoorType(tempcoor);//返回的定位结果是百度经纬度，默认值gcj02
+//        int span=1000;
+        option.setScanSpan(1000);//设置发起定位请求的间隔时间为5000ms
+        option.setIsNeedAddress(true);
+        mLocationClient.setLocOption(option);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -57,6 +84,39 @@ public class PunchDetailFragment extends Fragment{
         ArrayAdapter adapter = ArrayAdapter.createFromResource(getActivity(), R.array.punch_types, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         s.setAdapter(adapter);
+        
+        mRefreshBtn = (ImageView) view.findViewById(R.id.punchDetailRefreshBtn);
+        mPunchLocationView = (TextView) view.findViewById(R.id.punchLocation);
+        mRotateAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate_location);
+        
+        ((XBApplication)getActivity().getApplication()).mLocationResult = mPunchLocationView;
+        ((XBApplication)getActivity().getApplication()).mRefreshBtn = mRefreshBtn;
+        mLocationClient = ((XBApplication)getActivity().getApplication()).mLocationClient;
+        initLocation();
+        mLocationClient.start();
+        
+        mRefreshBtn.startAnimation(mRotateAnim);
+        mRefreshBtn.setClickable(false);
+        
+        mRefreshBtn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mRefreshBtn.getAnimation() == null) {
+                    mRefreshBtn.startAnimation(mRotateAnim);
+                    //开始定位
+                    mLocationClient.start();
+                }
+                
+
+                //                if(startLocation.getText().equals(getString(R.string.startlocation))){
+                //                    mLocationClient.start();
+                //                    startLocation.setText(getString(R.string.stoplocation));
+                //                }else{
+                //                    mLocationClient.stop();
+                //                    startLocation.setText(getString(R.string.startlocation));
+                //                }
+            }
+        });
         
         Button submitBtn = (Button) view.findViewById(R.id.punchDetailSubmitBtn);
         if(mPunch == null ) {

@@ -26,6 +26,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.serviceindeed.xuebao.util.ScrollDetectingListView;
 import com.serviceindeed.xuebao.values.Leave;
 import com.serviceindeed.xuebao.values.Punch;
 
@@ -34,7 +35,7 @@ public class LeaveFragment2 extends Fragment implements AnimationListener{
 
     private Callbacks mCallbacks;
     ListAdapter mAdapter;
-    ListView mList;
+    ScrollDetectingListView mList;
     ImageView mImageView;
     
     String DATE_FORMATE = "yyyy-MM-dd hh:mm:ss";
@@ -66,13 +67,25 @@ public class LeaveFragment2 extends Fragment implements AnimationListener{
     
     private void bindAnimation(){
         mList.setOnScrollListener(new OnScrollListener() {
+            private int mPosition;
+            private int mOffset;
+            private int mInitialScroll;
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, 
                 int visibleItemCount, int totalItemCount) {
             }
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
-                final ListView lw = mList;
+               final ListView lw = mList;
+                
+                
+//                final int currentFirstVisibleItem = lw.getFirstVisiblePosition();
+//                if (!hidedAnimation && currentFirstVisibleItem > mLastFirstVisibleItem) {
+//                    mImageView.startAnimation(mOutAnim);
+//                }
+//                else if (hidedAnimation && currentFirstVisibleItem < mLastFirstVisibleItem) {
+//                    mImageView.startAnimation(mInAnim);
+//                }
 
                 if (view.getId() == lw.getId()) {
                     final int currentFirstVisibleItem = lw.getFirstVisiblePosition();
@@ -101,13 +114,12 @@ public class LeaveFragment2 extends Fragment implements AnimationListener{
         
         View view = inflater.inflate(R.layout.fragment_leave, container, false);
 
-        mList = (ListView) view.findViewById(R.id.leave_list_view);  
+        mList = (ScrollDetectingListView) view.findViewById(R.id.leave_list_view);  
         mImageView = (ImageView) view.findViewById(R.id.createLeaveBtn);    
         mAdapter = new LeaveAdapter(mockLeaves()); //获取请假的list
         mList.setAdapter(mAdapter);
         
         mList.setOnItemClickListener(new OnItemClickListener() {
-
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Leave item = (Leave) mAdapter.getItem(position);
