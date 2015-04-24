@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:id="@+id/home_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/home_header_bg"
+        android:orientation="horizontal" >
+
+        <cn.auchan.auchandrive.feng.utils.IconFontTextView
+            android:id="@+id/left_slider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="@string/header1"
+            android:textColor="@color/home_header_text"
+            android:textSize="28sp" />
+
+        <EditText
+            android:id="@+id/home_search_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/search_box"
+            android:drawableLeft="@drawable/tm_fun_icon_search"
+            android:ems="10"
+            android:focusable="false"
+            android:hint="@string/home_search_hint"
+            android:textSize="15sp" >
+        </EditText>
+
+        <cn.auchan.auchandrive.feng.utils.IconFontTextView
+            android:id="@+id/home_barcode_scan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="@string/barcode_scan"
+            android:textColor="@color/home_header_text"
+            android:textSize="25sp" />
+    </LinearLayout>
+
+<!--         android:fillViewport="true" -->
+    <!-- ptr:ptrAnimationStyle="flip" -->
+
+    <com.handmark.pulltorefresh.library.PullToRefreshScrollView
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/pull_refresh_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/home_header"
+                android:dividerHeight="5.0sp"
+        ptr:ptrMode="both" >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:padding="8dp"
+            android:text="@string/filler_text"
+            android:textSize="16sp" />
+    </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
+
+</RelativeLayout>

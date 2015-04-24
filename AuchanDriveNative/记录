@@ -1,0 +1,4 @@
+1. 主界面应该只有一个activity，然后加载不同的fragment
+	所以主界面就是一个fragment容器，然后不同的页面分别是个fragment
+2. 如何设置menuitem的选中状态。
+http://stackoverflow.com/questions/19882443/how-to-change-menuitem-icon-in-actionbar-programatically

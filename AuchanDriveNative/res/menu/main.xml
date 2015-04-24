@@ -1,0 +1,31 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.serviceindeed.xuebao.MainActivity" >
+
+    <item
+        android:id="@+id/menu_item_home"
+        android:showAsAction="ifRoom"
+        android:icon="@drawable/main_bottom_tab_home_normal"
+        android:title="@string/main_home"/>
+    <item
+        android:id="@+id/menu_item_fun"
+        android:icon="@drawable/main_bottom_tab_category_normal"
+        android:showAsAction="ifRoom"
+        android:title="@string/main_category"/>
+    <item
+        android:id="@+id/menu_item_mine"
+        android:icon="@drawable/main_bottom_tab_cart_normal"
+        android:showAsAction="ifRoom"
+        android:title="@string/main_discount"/>
+    <item
+        android:id="@+id/menu_item_more1"
+        android:showAsAction="ifRoom"
+        android:icon="@drawable/main_bottom_tab_personal_normal"
+        android:title="@string/main_fast"/>
+    <item
+        android:id="@+id/menu_item_more2"
+        android:showAsAction="ifRoom"
+        android:icon="@drawable/main_bottom_tab_search_normal"
+        android:title="@string/main_mycenter"/>
+
+</menu>

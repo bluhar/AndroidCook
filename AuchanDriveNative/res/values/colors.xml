@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+     <color name="home_header_bg">#e50011</color>
+     <color name="home_header_text">#FFFFFF</color>
+     <color name="slide_bg">#000000</color>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <color name="text_color">#2b2b2b</color>
+    <color name="text_color_light">#969696</color>
+    <color name="background_tab_pressed">#6633B5E5</color>
+
+    <item name="gray_holo_dark" type="color">#ff464646</item>
+    <item name="gray_holo_light" type="color">#ffd0d0d0</item>
+
+    <!-- background -->
+    <color name="bgActionBar">#FFFFFF</color>
+    <color name="bgMain">#2ebbed</color>
+<!--     <color name="bgActionBarSplit">#233548</color> -->
+<!--     <color name="bgActionBarActionMode">#233548</color> -->
+<!--     <color name="bgTabs">#233548</color> -->
+<!--     <color name="bgFooter">#233548</color> -->
+<!--     <color name="bgHeader">#233548</color> -->
+<!--     <color name="bgMainList">#F4F4F4</color> -->
+<!--     <color name="bgImageGallery">#FFF</color> -->
+<!--     <color name="bgPromotionText">#FFF</color> -->
+    <color name="bgActionBarItemPressed">#5CC0E0</color> 
+    
+    <color name="mainBackground">#EFEFF4</color>
+    <color name="white">#FFFFFF</color>
+    <color name="forgetPwdText">#333</color>
+    
+
+    <!-- text secondary -->
+    <color name="textLink">#0958B8</color>
+    <color name="textButton">#000000</color>
+    <color name="textButtonLight">#4E4E4E</color>
+    <color name="textActionBar">#FFFFFF</color>
+    <color name="textFooter">#FFFFFF</color>
+    <color name="textHeader">#FFFFFF</color>
+    <color name="textTabs">#FFFFFF</color>
+    <color name="textAdvice">#0958B8</color>
+    <color name="textPromotion">#0958B8</color>
+
+</resources>
